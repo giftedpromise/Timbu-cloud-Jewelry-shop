@@ -1,4 +1,3 @@
-// src/components/Home.jsx
 import React from "react";
 import Jewelry1 from "../assets/images/jewelry1.png";
 import Jewelry2 from "../assets/images/jewelry2.png";
@@ -6,7 +5,7 @@ import Jewelry3 from "../assets/images/jewelry3.png";
 
 const Home = () => {
   return (
-    <div className=" bg-[#FAF3E6] text-customColor-500">
+    <div className="bg-[#FAF3E6] text-customColor-500 overflow-x-hidden">
       <p className="text-center text-custom-24 font-medium font-playfair">
         Welcome to our shop <br /> Where Elegance Meets Innovation
       </p>
@@ -44,7 +43,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center  pb-6">
+      <div className="flex justify-center items-center pb-6">
         <button className="bg-[#3F001F] text-white px-10 py-2 rounded-lg mt-4 md:hidden">
           Shop Now
         </button>

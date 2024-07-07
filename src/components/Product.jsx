@@ -23,7 +23,9 @@ const Product = () => {
               />
               <div className="bg-[#FAF3E6] p-6">
                 <div className="flex justify-between items-center mb-2">
-                  <h2 className="text-xl font-semibold">{item.name}</h2>
+                  <h2 className="text-lg font-bold font-playfair">
+                    {item.name}
+                  </h2>
                   {/* Hardcoded rating */}
                   <div className="flex items-center">
                     {[...Array(5)].map((star, index) => (
@@ -41,10 +43,10 @@ const Product = () => {
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="text-lg font-medium text-gray-700">
-                    ${item.price.toFixed(2)}
+                  <p className="text-2xl font-bold text-gray-700 font-playfair">
+                    {item.price.toFixed(2)}
                   </p>
-                  <img src={Cart} alt="cart" className="w-8 h-8" />
+                  <img src={Cart} alt="cart" className="w-6 h-6" />
                 </div>
               </div>
             </div>
