@@ -39,7 +39,11 @@ const Home = () => {
           <img src={Jewelry1} alt="Jewelry-one" className="mb-8 md:mb-0" />
           <div className="flex justify-between gap-8">
             <img src={Jewelry2} alt="Jewelry-two" className="w-[200px]" />
-            <img src={Jewelry3} alt="Jewelry-three" className="w-[200px]" />
+            <img
+              src={Jewelry3}
+              alt="Jewelry-three"
+              className="w-[200px] pr-4 md:pr-0" // Added pr-4 for padding-right on smaller screens
+            />
           </div>
         </div>
       </div>
