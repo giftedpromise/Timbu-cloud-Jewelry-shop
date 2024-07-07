@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
+import Product from "./components/Product";
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <div className="main-content  bg-[#FAF3E6]">
         <Home />
       </div>
+      <Product />
     </div>
   );
 };

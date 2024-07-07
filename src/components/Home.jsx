@@ -3,7 +3,6 @@ import React from "react";
 import Jewelry1 from "../assets/images/jewelry1.png";
 import Jewelry2 from "../assets/images/jewelry2.png";
 import Jewelry3 from "../assets/images/jewelry3.png";
-import Jewelryframe from "../assets/images/jewelryFrame.png";
 
 const Home = () => {
   return (
@@ -14,7 +13,7 @@ const Home = () => {
 
       <div
         name="home"
-        className="flex flex-col md:flex-row justify-between md:px-[2rem] py-[4rem] gap-8"
+        className="flex flex-col md:flex-row justify-between md:px-[2rem] py-[2rem] gap-8"
       >
         <div className="md:w-1/2">
           <h1 className="text-6xl md:text-6xl lg:text-6xl xl:text-6xl font-bold text-customColor-500 font-playfair text-center md:text-left">
@@ -33,17 +32,22 @@ const Home = () => {
             </span>
             the perfect accessory for any occasion.
           </p>
-          <button className="bg-[#3F001F] text-white px-4 py-2 rounded-lg">
+          <button className="hidden md:inline bg-[#3F001F] text-white px-4 py-2 rounded-lg">
             Shop Now
           </button>
         </div>
-        <div className="md:w-1/2 mt-10 md:mt-0">
+        <div className="md:w-1/2 mt-10 md:mt-0 px-4 md:px-0">
           <img src={Jewelry1} alt="Jewelry-one" className="mb-8 md:mb-0" />
           <div className="flex justify-between gap-8">
             <img src={Jewelry2} alt="Jewelry-two" className="w-[200px]" />
             <img src={Jewelry3} alt="Jewelry-three" className="w-[200px]" />
           </div>
         </div>
+      </div>
+      <div className="flex justify-center items-center  pb-6">
+        <button className="bg-[#3F001F] text-white px-10 py-2 rounded-lg mt-4 md:hidden">
+          Shop Now
+        </button>
       </div>
     </div>
   );
