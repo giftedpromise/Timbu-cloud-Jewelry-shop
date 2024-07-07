@@ -32,3 +32,8 @@
 .main-content {
   padding-top: 120px; /* Add padding equal to the height of the navbar */
 }
+.custom-placeholder::placeholder {
+  font-weight: 500; /* medium */
+  font-size: 14px;
+  color: #22272f; /* custom color */
+}

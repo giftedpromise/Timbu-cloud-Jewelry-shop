@@ -6,7 +6,6 @@ import { data } from "../data/data";
 const Product = () => {
   return (
     <div className="px-8">
-      {" "}
       {/* This adds padding of 2rem (32px) on both left and right */}
       <div className="m-9">
         <img src={Jewelryframe} alt="jewelry-frame" />
@@ -15,7 +14,10 @@ const Product = () => {
         <h1 className="text-4xl font-bold text-center mb-8">Our Products</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {data.map((item) => (
-            <div key={item.id} className="shadow-lg rounded-lg overflow-hidden">
+            <div
+              key={item.id}
+              className="shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105"
+            >
               <img
                 src={item.image}
                 alt={item.name}
@@ -43,8 +45,8 @@ const Product = () => {
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="text-2xl font-bold text-gray-700 font-playfair">
-                    {item.price.toFixed(2)}
+                  <p className="text-lg font-bold text-gray-700 font-playfair">
+                    ${item.price.toFixed(2)}
                   </p>
                   <img src={Cart} alt="cart" className="w-6 h-6" />
                 </div>
