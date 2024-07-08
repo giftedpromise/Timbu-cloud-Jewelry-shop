@@ -100,9 +100,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center h-screen">
+      <div className="flex flex-col justify-center items-center -mt-12 md:mt-14 h-screen">
         <img src={twentyImg} alt="2024" className="w-auto h-auto" />
-        <p className="bg-[#CEB483] text-[#22272F] text-[24px] font-medium rounded-full px-6 py-2 my-6">
+        <p className="bg-[#CEB483] text-[#22272F] text-[18px] md:text-[24px] font-medium rounded-full px-6 py-2 my-6">
           Get 30% deals on our shop country wide
         </p>
         <h1 className="text-4xl  font-bold text-center font-playfair text-customColor-500">
@@ -113,7 +113,9 @@ const Home = () => {
           Shop Now
         </button>
       </div>
-      <Contact />
+      <div className="-mt-10 md:mt-14">
+        <Contact />
+      </div>
     </div>
   );
 };
