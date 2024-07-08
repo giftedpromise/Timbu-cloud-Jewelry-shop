@@ -1,11 +1,12 @@
 import React from "react";
+import footerLogo from "../assets/images/footerLogo.png";
 
 const Contact = () => {
   return (
-    <div className="bg-[#FAF3E6] py-12 px-8">
+    <div className=" py-12 px-8">
       <div
         name="contact"
-        className="flex flex-col md:flex-row justify-between items-start gap-8"
+        className="flex flex-col md:flex-row justify-between items-start gap-8 bg-[#FAF3E6] p-8"
       >
         <div className="w-full md:w-1/3">
           <h1 className="text-2xl font-bold  text-customColor-500 mb-2">
@@ -50,6 +51,12 @@ const Contact = () => {
             Submit
           </button>
         </div>
+      </div>
+      <div className="bg-[#3F001F] p-8 flex items-center justify-between text-white">
+        <p className="text-lg font-medium">
+          @2024 All Rights served By Charmed Circles Jewelry
+        </p>
+        <img src={footerLogo} alt="footer logo" className="h-10 w-[200px]" />
       </div>
     </div>
   );
