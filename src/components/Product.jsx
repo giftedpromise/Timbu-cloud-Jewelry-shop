@@ -1,14 +1,16 @@
-// Product.jsx
-import React from "react";
+import React, { useContext } from "react";
 import Jewelry1 from "../assets/images/jewelry1.png";
 import Jewelryframe from "../assets/images/jewelryFrame.png";
-import Cart from "../assets/images/products/cart.png";
+import CartIcon from "../assets/images/products/cart.png"; // Assuming this is your cart icon image
 import { data } from "../data/data";
 import Contact from "./Contact";
+import { CartContext } from "../context/CartContext";
 
 const Product = () => {
+  const { addToCart } = useContext(CartContext);
+
   return (
-    <div className="mb-0">
+    <div className="my-0">
       <div className="flex flex-col justify-center items-center bg-[#FAF3E6] mt-0 p-4">
         <p className="bg-[#CEB483] text-[#22272F] text-[24px] font-medium rounded-full px-6 py-2 my-1 md:my-2">
           Welcome to our shop
@@ -40,26 +42,18 @@ const Product = () => {
                   <h2 className="text-lg font-bold font-playfair">
                     {item.name}
                   </h2>
-                  <div className="flex items-center">
-                    {[...Array(5)].map((star, index) => (
-                      <svg
-                        key={index}
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        className="w-4 h-4 text-yellow-500"
-                      >
-                        <path d="M12 .587l3.668 7.476L24 9.763l-6 5.849 1.421 8.288L12 18.902 4.579 23.9 6 15.612 0 9.763l8.332-1.7L12 .587z" />
-                      </svg>
-                    ))}
-                  </div>
+                  {/* Use onClick to call addToCart */}
+                  <img
+                    src={CartIcon}
+                    alt="cart"
+                    className="w-6 h-6 cursor-pointer"
+                    onClick={() => addToCart(item)} // Call addToCart with item
+                  />
                 </div>
                 <div className="flex justify-between items-center">
                   <p className="text-lg font-bold text-gray-700 font-playfair">
                     ${item.price.toFixed(2)}
                   </p>
-                  <img src={Cart} alt="cart" className="w-6 h-6" />
                 </div>
               </div>
             </div>

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/images/logo.png";
 import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
+import { CartContext } from "../context/CartContext";
 
 const NavBar = () => {
   const [nav, setNav] = useState(false);
+  const { totalItems } = useContext(CartContext); // Access totalItems from CartContext
 
   const handleClick = () => {
     setNav(!nav);
@@ -26,9 +28,15 @@ const NavBar = () => {
 
         <Link to="/cart" className="hidden md:block absolute right-16 top-2">
           <FaShoppingCart size={30} />
+          {totalItems > 0 && ( // Display quantity if totalItems > 0
+            <span className="ml-1">{totalItems}</span>
+          )}
         </Link>
         <Link to="/cart" className="md:hidden absolute right-4 top-6">
           <FaShoppingCart size={30} />
+          {totalItems > 0 && ( // Display quantity if totalItems > 0
+            <span className="ml-1">{totalItems}</span>
+          )}
         </Link>
 
         <ul className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
