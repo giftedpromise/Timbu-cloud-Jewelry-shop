@@ -8,7 +8,7 @@ import Contact from "./Contact";
 
 const Product = () => {
   return (
-    <div>
+    <div className="mb-0">
       <div className="flex flex-col justify-center items-center bg-[#FAF3E6] mt-0 p-4">
         <p className="bg-[#CEB483] text-[#22272F] text-[24px] font-medium rounded-full px-6 py-2 my-1 md:my-2">
           Welcome to our shop

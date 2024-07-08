@@ -1,4 +1,3 @@
-// NavBar.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/images/logo.png";
@@ -34,16 +33,40 @@ const NavBar = () => {
 
         <ul className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
           <li className="mx-2">
-            <Link to="/">Home</Link>
+            <Link
+              to="/"
+              onClick={closeMobileMenu}
+              className="hover:text-[#3F001F] transition duration-300"
+            >
+              Home
+            </Link>
           </li>
           <li className="mx-2">
-            <Link to="/product">Product</Link>
+            <Link
+              to="/product"
+              onClick={closeMobileMenu}
+              className="hover:text-[#3F001F] transition duration-300"
+            >
+              Product
+            </Link>
           </li>
           <li className="mx-2">
-            <Link to="/about">About</Link>
+            <Link
+              to="/about"
+              onClick={closeMobileMenu}
+              className="hover:text-[#3F001F] transition duration-300"
+            >
+              About
+            </Link>
           </li>
           <li className="mx-2">
-            <Link to="/contact">Contact</Link>
+            <Link
+              to="/contact"
+              onClick={closeMobileMenu}
+              className="hover:text-[#3F001F] transition duration-300"
+            >
+              Contact
+            </Link>
           </li>
         </ul>
       </div>
@@ -58,22 +81,38 @@ const NavBar = () => {
         }
       >
         <li className="py-6 text-4xl">
-          <Link onClick={closeMobileMenu} to="/">
+          <Link
+            onClick={closeMobileMenu}
+            to="/"
+            className="hover:text-[#3F001F] transition duration-300"
+          >
             Home
           </Link>
         </li>
         <li className="py-6 text-4xl">
-          <Link onClick={closeMobileMenu} to="/product">
+          <Link
+            onClick={closeMobileMenu}
+            to="/product"
+            className="hover:text-[#3F001F] transition duration-300"
+          >
             Product
           </Link>
         </li>
         <li className="py-6 text-4xl">
-          <Link onClick={closeMobileMenu} to="/about">
+          <Link
+            onClick={closeMobileMenu}
+            to="/about"
+            className="hover:text-[#3F001F] transition duration-300"
+          >
             About
           </Link>
         </li>
         <li className="py-6 text-4xl">
-          <Link onClick={closeMobileMenu} to="/contact">
+          <Link
+            onClick={closeMobileMenu}
+            to="/contact"
+            className="hover:text-[#3F001F] transition duration-300"
+          >
             Contact
           </Link>
         </li>
