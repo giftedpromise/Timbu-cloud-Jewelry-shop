@@ -42,7 +42,7 @@ const Home = () => {
           </div>
           <div className="md:w-1/2 mt-10 md:mt-0 px-4 md:px-0">
             <img src={Jewelry1} alt="Jewelry-one" className="mb-8 md:mb-0" />
-            <div className="flex justify-between gap-8 m-6">
+            <div className="flex justify-between gap-4 my-6 ">
               <img src={Jewelry2} alt="Jewelry-two" className="w-[180px]" />
               <img
                 src={Jewelry3}
