@@ -1,16 +1,28 @@
+// Product.jsx
 import React from "react";
+import Jewelry1 from "../assets/images/jewelry1.png";
 import Jewelryframe from "../assets/images/jewelryFrame.png";
 import Cart from "../assets/images/products/cart.png";
 import { data } from "../data/data";
+import Contact from "./Contact";
 
 const Product = () => {
   return (
-    <div className="px-8">
-      {/* This adds padding of 2rem (32px) on both left and right */}
+    <div>
+      <div className="flex flex-col justify-center items-center bg-[#FAF3E6] mt-0 p-4">
+        <p className="bg-[#CEB483] text-[#22272F] text-[24px] font-medium rounded-full px-6 py-2 my-1 md:my-2">
+          Welcome to our shop
+        </p>
+        <h1 className="text-4xl font-bold text-center font-playfair text-customColor-500 my-4 md:my-2 pb-2">
+          Discover the Magic of Timeless Elegance
+        </h1>
+        <img src={Jewelry1} alt="Jewelry-one" className="mb-8 md:mb-0" />
+      </div>
+
       <div className="m-9">
         <img src={Jewelryframe} alt="jewelry-frame" />
       </div>
-      <div className="container mx-auto py-12">
+      <div className="container mx-auto py-12 px-8">
         <h1 className="text-4xl font-bold text-center mb-8">Our Products</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {data.map((item) => (
@@ -28,7 +40,6 @@ const Product = () => {
                   <h2 className="text-lg font-bold font-playfair">
                     {item.name}
                   </h2>
-                  {/* Hardcoded rating */}
                   <div className="flex items-center">
                     {[...Array(5)].map((star, index) => (
                       <svg
@@ -55,6 +66,7 @@ const Product = () => {
           ))}
         </div>
       </div>
+      <Contact />
     </div>
   );
 };

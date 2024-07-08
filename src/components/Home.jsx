@@ -4,7 +4,9 @@ import Jewelry2 from "../assets/images/jewelry2.png";
 import Jewelry3 from "../assets/images/jewelry3.png";
 import JewelryFrame from "../assets/images/jewelryFrame.png";
 import FeaturedImg from "../assets/images/featuredimg.png";
+import twentyImg from "../assets/images/2024img.png";
 import { data } from "../data/data";
+import Contact from "./Contact";
 
 const Home = () => {
   const lastFourItems = data.slice(-4);
@@ -30,7 +32,7 @@ const Home = () => {
             </h1>
             <p className="text-lg my-14 font-normal font-playfair text-center md:text-left">
               From statement necklaces to delicate rings, our
-              <span className="hidden md:inline">
+              <span className="md:inline">
                 {" "}
                 collection is crafted to perfection, ensuring you find{" "}
               </span>
@@ -98,6 +100,20 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className="flex flex-col justify-center items-center h-screen">
+        <img src={twentyImg} alt="2024" className="w-auto h-auto" />
+        <p className="bg-[#CEB483] text-[#22272F] text-[24px] font-medium rounded-full px-6 py-2 my-6">
+          Get 30% deals on our shop country wide
+        </p>
+        <h1 className="text-4xl  font-bold text-center font-playfair text-customColor-500">
+          Exclusive 2024 Collection: Unique Designs, Premium <br /> Quality,
+          Limited-Time Offers!
+        </h1>
+        <button className="bg-[#3F001F] text-white px-10 py-2 rounded-lg mt-4 ">
+          Shop Now
+        </button>
+      </div>
+      <Contact />
     </div>
   );
 };
