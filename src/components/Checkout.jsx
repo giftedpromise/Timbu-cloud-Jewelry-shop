@@ -1,9 +1,10 @@
-// src/components/Checkout.jsx
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 
 const Checkout = () => {
-  const { cart, totalPrice } = useContext(CartContext);
+  const navigate = useNavigate();
+  const { cart, totalPrice, clearCart } = useContext(CartContext);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,9 +21,13 @@ const Checkout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send data to the server
     console.log("Form data submitted:", formData);
-    alert("Order placed successfully!");
+
+    // Clear cart after successful order placement
+    clearCart();
+
+    // Redirect to confirmation page using navigate
+    navigate("/order-confirmation");
   };
 
   return (
@@ -142,7 +147,7 @@ const Checkout = () => {
                   </div>
                   <div className="w-full md:w-1/3 text-right">
                     <p className="text-lg font-bold">
-                      ${item.price.toFixed(2)}
+                      ${(item.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
                 </div>

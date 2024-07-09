@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
@@ -7,8 +6,9 @@ import Product from "./components/Product";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Cart from "./components/Cart";
-import Checkout from "./components/Checkout"; // Import the Checkout component
-import { CartProvider } from "./context/CartContext"; // Import CartProvider
+import Checkout from "./components/Checkout";
+import OrderConfirmation from "./components/OrderConfirmation"; // Import OrderConfirmation
+import { CartProvider } from "./context/CartContext";
 
 const App = () => {
   return (
@@ -21,8 +21,12 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />{" "}
-          {/* Add the checkout route */}
+          <Route path="/checkout" element={<Checkout />} />
+          <Route
+            path="/order-confirmation"
+            element={<OrderConfirmation />}
+          />{" "}
+          {/* Add this line */}
         </Routes>
       </Router>
     </CartProvider>
