@@ -1,5 +1,6 @@
 // src/components/Cart.jsx
 import React, { useContext } from "react";
+import Contact from "./Contact";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 
@@ -16,8 +17,8 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mx-auto py-12 px-8">
-      <h1 className="text-4xl text-customColor-500 font-bold text-center mb-8">
+    <div className="container pb-12 px-8">
+      <h1 className="text-4xl text-customColor-500 py-12 bg-[#FAF3E6] font-bold text-center mt-0 mb-8">
         Your Cart
       </h1>
       {cart.length === 0 ? (
@@ -81,13 +82,17 @@ const Cart = () => {
             </button>
             <button
               onClick={clearCart}
-              className="bg-red-500 text-white text-lg font-bold px-4 py-2 rounded-lg mt-4"
+              className="bg-red-500 text-white text-lg font-bold px-4 py-2 mb-6 rounded-lg mt-4"
             >
               Clear All
             </button>
           </div>
         </div>
       )}
+
+      <div className="mt-16">
+        <Contact />
+      </div>
     </div>
   );
 };
