@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import footerLogo from "../assets/images/footerLogo.png";
 
 const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you would typically handle the form submission, e.g., sending the data to a server
+
+    // Simulating successful submission
+    setIsSubmitted(true);
+
+    // Clear form fields
+    setName("");
+    setEmail("");
+
+    // Hide the message after a few seconds
+    setTimeout(() => setIsSubmitted(false), 3000);
+  };
+
   return (
     <div className="h-screen flex flex-col justify-between">
       <div
@@ -37,19 +56,33 @@ const Contact = () => {
           <h1 className="text-2xl font-bold text-customColor-500 mb-2">
             Subscribe
           </h1>
-          <input
-            type="text"
-            placeholder="Enter Name"
-            className="w-3/4 mb-2 mt-2 p-2 border border-gray-300 rounded-full custom-placeholder bg-[#FAF3E6]"
-          />
-          <input
-            type="text"
-            placeholder="Enter Email"
-            className="w-3/4 mb-2 mt-2 p-2 border border-gray-300 rounded-full custom-placeholder bg-[#FAF3E6]"
-          />
-          <button className="bg-[#3F001F] text-white text-lg font-bold px-4 py-2 mt-2 rounded-full w-3/4">
-            Submit
-          </button>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Enter Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-3/4 mb-2 mt-2 p-2 border border-gray-300 rounded-full custom-placeholder bg-[#FAF3E6]"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Enter Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-3/4 mb-2 mt-2 p-2 border border-gray-300 rounded-full custom-placeholder bg-[#FAF3E6]"
+              required
+            />
+            <button
+              type="submit"
+              className="bg-[#3F001F] text-white text-lg font-bold px-4 py-2 mt-2 rounded-full w-3/4"
+            >
+              Submit
+            </button>
+          </form>
+          {isSubmitted && (
+            <p className="text-customColor-500 mt-4">Submission successful!</p>
+          )}
         </div>
       </div>
       <div className="bg-[#3F001F] p-8 flex items-center justify-between text-white">

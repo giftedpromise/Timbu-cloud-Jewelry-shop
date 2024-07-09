@@ -19,21 +19,33 @@ const NavBar = () => {
   return (
     <div className="w-full">
       <div className="h-[80px] flex justify-between items-center px-4 bg-[#FAF3E6] text-customColor-500 text-18px font-medium relative">
-        <div onClick={handleClick} className="md:hidden z-10">
+        <div onClick={handleClick} className="md:hidden z-10 cursor-pointer">
           {!nav ? <FaBars /> : <FaTimes />}
         </div>
         <div className="flex items-center justify-center flex-grow md:justify-center md:flex-grow-0">
           <img src={Logo} alt="Logo Image" className="w-[200px]" />
         </div>
 
-        <Link to="/cart" className="hidden md:block absolute right-16 top-2">
-          <FaShoppingCart size={30} />
+        <Link
+          to="/cart"
+          className="hidden md:block absolute right-16 top-2 hover:text-[#3F001F] transition duration-300"
+        >
+          <FaShoppingCart
+            size={30}
+            className="hover:scale-110 transition-transform duration-300"
+          />
           {totalItems > 0 && ( // Display quantity if totalItems > 0
             <span className="ml-1">{totalItems}</span>
           )}
         </Link>
-        <Link to="/cart" className="md:hidden absolute right-4 top-6">
-          <FaShoppingCart size={30} />
+        <Link
+          to="/cart"
+          className="md:hidden absolute right-4 top-6 hover:text-[#3F001F] transition duration-300"
+        >
+          <FaShoppingCart
+            size={30}
+            className="hover:scale-110 transition-transform duration-300"
+          />
           {totalItems > 0 && ( // Display quantity if totalItems > 0
             <span className="ml-1">{totalItems}</span>
           )}

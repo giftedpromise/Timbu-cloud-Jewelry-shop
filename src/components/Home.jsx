@@ -1,4 +1,6 @@
+// src/components/Home.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Jewelry1 from "../assets/images/jewelry1.png";
 import Jewelry2 from "../assets/images/jewelry2.png";
 import Jewelry3 from "../assets/images/jewelry3.png";
@@ -9,7 +11,13 @@ import { data } from "../data/data";
 import Contact from "./Contact";
 
 const Home = () => {
+  const navigate = useNavigate();
   const lastFourItems = data.slice(-4);
+
+  const handleShopNowClick = () => {
+    navigate("/product");
+  };
+
   return (
     <div>
       <div className="bg-[#FAF3E6] text-customColor-500 overflow-x-hidden">
@@ -38,7 +46,10 @@ const Home = () => {
               </span>
               the perfect accessory for any occasion.
             </p>
-            <button className="hidden md:inline bg-[#3F001F] text-white px-4 py-2 rounded-lg">
+            <button
+              onClick={handleShopNowClick}
+              className="hidden md:inline bg-[#3F001F] text-white px-4 py-2 rounded-lg"
+            >
               Shop Now
             </button>
           </div>
@@ -55,7 +66,10 @@ const Home = () => {
           </div>
         </div>
         <div className="flex justify-center items-center pb-6">
-          <button className="bg-[#3F001F] text-white px-10 py-2 rounded-lg mt-4 md:hidden">
+          <button
+            onClick={handleShopNowClick}
+            className="bg-[#3F001F] text-white px-10 py-2 rounded-lg mt-4 md:hidden"
+          >
             Shop Now
           </button>
         </div>
@@ -109,7 +123,10 @@ const Home = () => {
           Exclusive 2024 Collection: Unique Designs, Premium <br /> Quality,
           Limited-Time Offers!
         </h1>
-        <button className="bg-[#3F001F] text-white px-10 py-2 rounded-lg mt-4 ">
+        <button
+          onClick={handleShopNowClick}
+          className="bg-[#3F001F] text-white px-10 py-2 rounded-lg mt-4"
+        >
           Shop Now
         </button>
       </div>

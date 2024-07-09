@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 
 const Cart = () => {
-  const { cart, removeFromCart, updateQuantity, totalPrice } =
+  const { cart, removeFromCart, updateQuantity, clearCart, totalPrice } =
     useContext(CartContext);
   const navigate = useNavigate();
 
@@ -17,9 +17,11 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto py-12 px-8">
-      <h1 className="text-4xl font-bold text-center mb-8">Your Cart</h1>
+      <h1 className="text-4xl text-customColor-500 font-bold text-center mb-8">
+        Your Cart
+      </h1>
       {cart.length === 0 ? (
-        <p className="text-center">Your cart is empty</p>
+        <p className="text-center text-customColor-500">Your cart is empty</p>
       ) : (
         <div className="space-y-8">
           {cart.map((item) => (
@@ -34,7 +36,9 @@ const Cart = () => {
                   className="w-24 h-24 object-cover rounded mr-4"
                 />
                 <div>
-                  <h2 className="text-lg font-bold">{item.name}</h2>
+                  <h2 className="text-lg font-bold text-customColor-500">
+                    {item.name}
+                  </h2>
                   <button
                     onClick={() => removeFromCart(item.id)}
                     className="text-red-500"
@@ -46,27 +50,27 @@ const Cart = () => {
               <div className="w-full md:w-1/3 flex items-center justify-center mb-4 md:mb-0">
                 <button
                   onClick={() => handleQuantityChange(item, -1)}
-                  className="bg-red-500 text-white px-2 rounded"
+                  className="bg-[#D9D9D9] text-white px-2 rounded"
                 >
                   -
                 </button>
                 <span className="mx-2">{item.quantity}</span>
                 <button
                   onClick={() => handleQuantityChange(item, 1)}
-                  className="bg-green-500 text-white px-2 rounded"
+                  className="bg-[#D9D9D9] text-white px-2 rounded"
                 >
                   +
                 </button>
               </div>
               <div className="w-full md:w-1/3 text-right">
-                <p className="text-lg font-bold">
+                <p className="text-lg font-bold text-customColor-500">
                   Total: ${(item.price * item.quantity).toFixed(2)}
                 </p>
               </div>
             </div>
           ))}
           <div className="flex flex-col items-center mt-8">
-            <p className="text-2xl font-bold">
+            <p className="text-2xl font-bold text-customColor-500">
               Total Price: ${totalPrice.toFixed(2)}
             </p>
             <button
@@ -74,6 +78,12 @@ const Cart = () => {
               className="bg-[#3F001F] text-white text-lg font-bold px-4 py-2 rounded-lg mt-4"
             >
               Proceed to Checkout
+            </button>
+            <button
+              onClick={clearCart}
+              className="bg-red-500 text-white text-lg font-bold px-4 py-2 rounded-lg mt-4"
+            >
+              Clear All
             </button>
           </div>
         </div>
