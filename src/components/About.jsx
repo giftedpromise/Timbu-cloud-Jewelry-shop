@@ -33,7 +33,7 @@ const About = () => {
 
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row justify-between items-center m-4 p-4 bg-[#CEB483] rounded-lg">
-          <div className="text-justify md:w-1/2">
+          <div className="text-justify md:w-1/2 md:mr-4">
             <h1 className="text-4xl font-bold font-playfair my-4 md:my-0 pb-4">
               Our Story
             </h1>
@@ -73,7 +73,7 @@ const About = () => {
             <img
               src={AboutImg3}
               alt="about-image3"
-              className="w-full md:w-1/3"
+              className="w-full md:w-1/3 md:mr-4"
             />
             <img
               src={AboutImg4}
@@ -108,7 +108,7 @@ const About = () => {
           <img
             src={AboutImg5}
             alt="about-image5"
-            className="w-full md:w-1/3 my-4 md:my-0"
+            className="w-full md:w-1/3 md:mr-4 my-4 md:my-0"
           />
           <div className="text-justify md:w-1/2">
             <h1 className="text-4xl font-bold font-playfair my-4 md:my-0 pb-4">
@@ -134,7 +134,7 @@ const About = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center m-4 p-4 bg-[#CEB483] rounded-lg">
-          <div className="text-justify md:w-1/2">
+          <div className="text-justify md:w-1/2 md:mr-4">
             <h1 className="text-4xl font-bold font-playfair my-4 md:my-0 pb-4">
               Our Collection
             </h1>
@@ -159,7 +159,7 @@ const About = () => {
             <img
               src={AboutImg6}
               alt="about-image6"
-              className="w-full md:w-1/3"
+              className="w-full md:w-1/3 md:mr-4"
             />
             <img
               src={AboutImg7}
