@@ -58,12 +58,12 @@ const About = () => {
             <img
               src={AboutImg1}
               alt="about-image1"
-              className="w-full md:w-1/2"
+              className="w-full md:w-1/3"
             />
             <img
               src={AboutImg2}
               alt="about-image2"
-              className="w-full md:w-1/2"
+              className="w-full md:w-1/3"
             />
           </div>
         </div>
@@ -73,12 +73,12 @@ const About = () => {
             <img
               src={AboutImg3}
               alt="about-image3"
-              className="w-full md:w-1/2"
+              className="w-full md:w-1/3"
             />
             <img
               src={AboutImg4}
               alt="about-image4"
-              className="w-full md:w-1/2"
+              className="w-full md:w-1/3"
             />
           </div>
           <div className="text-justify md:w-1/2">
@@ -108,7 +108,7 @@ const About = () => {
           <img
             src={AboutImg5}
             alt="about-image5"
-            className="w-full md:w-1/2 my-4 md:my-0"
+            className="w-full md:w-1/3 my-4 md:my-0"
           />
           <div className="text-justify md:w-1/2">
             <h1 className="text-4xl font-bold font-playfair my-4 md:my-0 pb-4">
@@ -159,12 +159,12 @@ const About = () => {
             <img
               src={AboutImg6}
               alt="about-image6"
-              className="w-full md:w-1/2"
+              className="w-full md:w-1/3"
             />
             <img
               src={AboutImg7}
               alt="about-image7"
-              className="w-full md:w-1/2"
+              className="w-full md:w-1/3"
             />
           </div>
         </div>
