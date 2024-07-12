@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Jewelry1 from "../assets/images/jewelry1.png";
 import Jewelryframe from "../assets/images/jewelryFrame.png";
 import CartIcon from "../assets/images/products/cart.png"; // Assuming this is your cart icon image
@@ -8,6 +8,21 @@ import { CartContext } from "../context/CartContext";
 
 const Product = () => {
   const { addToCart } = useContext(CartContext);
+  const [notifications, setNotifications] = useState({});
+
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    setNotifications((prev) => ({
+      ...prev,
+      [item.id]: `${item.name} added to cart!`,
+    }));
+    setTimeout(() => {
+      setNotifications((prev) => ({
+        ...prev,
+        [item.id]: "",
+      }));
+    }, 3000); // Hide notification after 3 seconds
+  };
 
   return (
     <div className="my-0">
@@ -30,7 +45,7 @@ const Product = () => {
           {data.map((item) => (
             <div
               key={item.id}
-              className="shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105"
+              className="shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105 relative"
             >
               <img
                 src={item.image}
@@ -42,12 +57,12 @@ const Product = () => {
                   <h2 className="text-lg font-bold font-playfair">
                     {item.name}
                   </h2>
-                  {/* Use onClick to call addToCart */}
+                  {/* Use onClick to call handleAddToCart */}
                   <img
                     src={CartIcon}
                     alt="cart"
                     className="w-6 h-6 cursor-pointer"
-                    onClick={() => addToCart(item)} // Call addToCart with item
+                    onClick={() => handleAddToCart(item)} // Call handleAddToCart with item
                   />
                 </div>
                 <div className="flex justify-between items-center">
@@ -56,6 +71,11 @@ const Product = () => {
                   </p>
                 </div>
               </div>
+              {notifications[item.id] && (
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-[#3F001F] text-white text-center py-1 px-2 w-3/4 rounded-md">
+                  {notifications[item.id]}
+                </div>
+              )}
             </div>
           ))}
         </div>

@@ -36,7 +36,7 @@ const NavBar = () => {
               className="hover:scale-110 transition-transform duration-300"
             />
             {totalItems > 0 && ( // Display quantity if totalItems > 0
-              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="absolute top-0 right-0 bg-[#3F001F] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                 {totalItems}
               </span>
             )}
@@ -52,7 +52,7 @@ const NavBar = () => {
               className="hover:scale-110 transition-transform duration-300"
             />
             {totalItems > 0 && ( // Display quantity if totalItems > 0
-              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="absolute top-0 right-0 bg-[#3F001F] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                 {totalItems}
               </span>
             )}
