@@ -128,7 +128,7 @@ export const data = [
   {
     id: 16,
     name: "Mystic Moon Dangles",
-    price: 5699.0,
+    price: 569.0,
     image: Product3,
   },
 
