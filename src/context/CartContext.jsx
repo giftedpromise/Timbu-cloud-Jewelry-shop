@@ -1,5 +1,4 @@
-// src/context/CartContext.jsx
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useMemo } from "react";
 
 export const CartContext = createContext();
 
@@ -34,9 +33,14 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
 
-  const totalPrice = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
+  const totalPrice = useMemo(
+    () => cart.reduce((total, item) => total + item.price * item.quantity, 0),
+    [cart]
+  );
+
+  const totalItems = useMemo(
+    () => cart.reduce((total, item) => total + item.quantity, 0),
+    [cart]
   );
 
   return (
@@ -48,6 +52,7 @@ export const CartProvider = ({ children }) => {
         updateQuantity,
         clearCart,
         totalPrice,
+        totalItems,
       }}
     >
       {children}

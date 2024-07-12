@@ -6,7 +6,7 @@ import { CartContext } from "../context/CartContext";
 
 const NavBar = () => {
   const [nav, setNav] = useState(false);
-  const { totalItems } = useContext(CartContext); // Access totalItems from CartContext
+  const { cart, totalItems } = useContext(CartContext); // Access cart and totalItems from CartContext
 
   const handleClick = () => {
     setNav(!nav);
@@ -30,25 +30,33 @@ const NavBar = () => {
           to="/cart"
           className="hidden md:block absolute right-16 top-2 hover:text-[#3F001F] transition duration-300"
         >
-          <FaShoppingCart
-            size={30}
-            className="hover:scale-110 transition-transform duration-300"
-          />
-          {totalItems > 0 && ( // Display quantity if totalItems > 0
-            <span className="ml-1">{totalItems}</span>
-          )}
+          <div className="relative">
+            <FaShoppingCart
+              size={30}
+              className="hover:scale-110 transition-transform duration-300"
+            />
+            {totalItems > 0 && ( // Display quantity if totalItems > 0
+              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </div>
         </Link>
         <Link
           to="/cart"
           className="md:hidden absolute right-4 top-6 hover:text-[#3F001F] transition duration-300"
         >
-          <FaShoppingCart
-            size={30}
-            className="hover:scale-110 transition-transform duration-300"
-          />
-          {totalItems > 0 && ( // Display quantity if totalItems > 0
-            <span className="ml-1">{totalItems}</span>
-          )}
+          <div className="relative">
+            <FaShoppingCart
+              size={30}
+              className="hover:scale-110 transition-transform duration-300"
+            />
+            {totalItems > 0 && ( // Display quantity if totalItems > 0
+              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </div>
         </Link>
 
         <ul className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
