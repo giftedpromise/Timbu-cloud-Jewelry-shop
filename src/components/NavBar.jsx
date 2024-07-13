@@ -6,7 +6,7 @@ import { CartContext } from "../context/CartContext";
 
 const NavBar = () => {
   const [nav, setNav] = useState(false);
-  const { cart, totalItems } = useContext(CartContext); // Access cart and totalItems from CartContext
+  const { totalItems } = useContext(CartContext); // Access totalItems from CartContext
 
   const handleClick = () => {
     setNav(!nav);

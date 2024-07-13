@@ -1,27 +1,59 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { getProducts } from "../data/data";
 import Jewelry1 from "../assets/images/jewelry1.png";
 import Jewelryframe from "../assets/images/jewelryFrame.png";
-import CartIcon from "../assets/images/products/cart.png"; // Assuming this is your cart icon image
-import { data } from "../data/data";
+import CartIcon from "../assets/images/products/cart.png";
 import Contact from "./Contact";
 import { CartContext } from "../context/CartContext";
 
 const Product = () => {
   const { addToCart } = useContext(CartContext);
+  const [products, setProducts] = useState([]);
   const [notifications, setNotifications] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const data = await getProducts();
+        if (data && data.items) {
+          console.log(data);
+          setProducts(data.items);
+        } else {
+          console.error("No data returned from fetch");
+        }
+      } catch (error) {
+        console.error("Failed to fetch products", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (products.length === 0) {
+    return <div>No products found.</div>;
+  }
+
+  console.log(products);
 
   const handleAddToCart = (item) => {
     addToCart(item);
     setNotifications((prev) => ({
       ...prev,
-      [item.id]: `${item.name} added to cart!`,
+      [item.unique_id]: `${item.name} added to cart!`,
     }));
     setTimeout(() => {
       setNotifications((prev) => ({
         ...prev,
-        [item.id]: "",
+        [item.unique_id]: "",
       }));
-    }, 3000); // Hide notification after 3 seconds
+    }, 3000);
   };
 
   return (
@@ -42,13 +74,13 @@ const Product = () => {
       <div className="container mx-auto py-12 px-8">
         <h1 className="text-4xl font-bold text-center mb-8">Our Products</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {data.map((item) => (
+          {products.map((item) => (
             <div
-              key={item.id}
+              key={item.unique_id}
               className="shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105 relative"
             >
               <img
-                src={item.image}
+                src={`https://api.timbu.cloud/images/${item.photos[0]?.url}`}
                 alt={item.name}
                 className="w-full h-64 object-cover"
               />
@@ -57,23 +89,23 @@ const Product = () => {
                   <h2 className="text-lg font-bold font-playfair">
                     {item.name}
                   </h2>
-                  {/* Use onClick to call handleAddToCart */}
                   <img
                     src={CartIcon}
                     alt="cart"
                     className="w-6 h-6 cursor-pointer"
-                    onClick={() => handleAddToCart(item)} // Call handleAddToCart with item
+                    onClick={() => handleAddToCart(item)}
                   />
                 </div>
+
                 <div className="flex justify-between items-center">
                   <p className="text-lg font-bold text-gray-700 font-playfair">
-                    ${item.price.toFixed(2)}
+                    ${item.current_price[0].USD[0]}
                   </p>
                 </div>
               </div>
-              {notifications[item.id] && (
+              {notifications[item.unique_id] && (
                 <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-[#3F001F] text-white text-center py-1 px-2 w-3/4 rounded-md">
-                  {notifications[item.id]}
+                  {notifications[item.unique_id]}
                 </div>
               )}
             </div>

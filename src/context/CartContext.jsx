@@ -1,31 +1,25 @@
-import React, { createContext, useState, useMemo } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-export const CartContext = createContext();
+const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
 
   const addToCart = (item) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
-      if (existingItem) {
-        return prevCart.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        );
-      }
-      return [...prevCart, { ...item, quantity: 1 }];
-    });
+    setCart((prevCart) => [...prevCart, { ...item, quantity: 1 }]);
   };
 
   const removeFromCart = (id) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+    setCart((prevCart) => prevCart.filter((item) => item.unique_id !== id));
   };
 
   const updateQuantity = (id, quantity) => {
     setCart((prevCart) =>
-      prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
+      prevCart.map((item) =>
+        item.unique_id === id ? { ...item, quantity } : item
+      )
     );
   };
 
@@ -33,15 +27,23 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
 
-  const totalPrice = useMemo(
-    () => cart.reduce((total, item) => total + item.price * item.quantity, 0),
-    [cart]
-  );
+  const updateTotalPrice = () => {
+    const total = cart.reduce(
+      (sum, item) => sum + item.current_price[0].USD[0] * item.quantity,
+      0
+    );
+    setTotalPrice(total);
+  };
 
-  const totalItems = useMemo(
-    () => cart.reduce((total, item) => total + item.quantity, 0),
-    [cart]
-  );
+  const updateTotalItems = () => {
+    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+    setTotalItems(total);
+  };
+
+  useEffect(() => {
+    updateTotalPrice();
+    updateTotalItems();
+  }, [cart]);
 
   return (
     <CartContext.Provider
@@ -59,3 +61,5 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
+export { CartProvider, CartContext };
