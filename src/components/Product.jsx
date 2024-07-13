@@ -32,14 +32,6 @@ const Product = () => {
     fetchProducts();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (products.length === 0) {
-    return <div>No products found.</div>;
-  }
-
   console.log(products);
 
   const handleAddToCart = (item) => {
