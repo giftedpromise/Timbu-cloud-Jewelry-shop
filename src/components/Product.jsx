@@ -11,27 +11,29 @@ const Product = () => {
   const [products, setProducts] = useState([]);
   const [notifications, setNotifications] = useState({});
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
         const data = await getProducts();
-        if (data && data.items) {
-          console.log(data);
-          setProducts(data.items);
-        } else {
-          console.error("No data returned from fetch");
-        }
+        setProducts(data.items);
       } catch (error) {
-        console.error("Failed to fetch products", error);
+        console.error("Failed to fetch products:", error);
       } finally {
         setLoading(false);
       }
     };
+
     fetchProducts();
   }, []);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (products.length === 0) {
+    return <div>No products found.</div>;
+  }
   console.log(products);
 
   const handleAddToCart = (item) => {
