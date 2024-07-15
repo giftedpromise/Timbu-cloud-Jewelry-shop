@@ -15,7 +15,7 @@ export const getProducts = async (currentPage) => {
         },
       }
     );
-    return response.data;
+    return response.data.items;
   } catch (error) {
     if (error.response) {
       // Server responded with a status other than 200 range

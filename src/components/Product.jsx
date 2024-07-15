@@ -11,12 +11,16 @@ const Product = () => {
   const [products, setProducts] = useState([]);
   const [notifications, setNotifications] = useState({});
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProducts = async (page) => {
       setLoading(true);
       try {
-        const data = await getProducts();
+        const data = await getProducts(page);
         setProducts(data.items);
+        setTotalPages(Math.ceil(data.total / 10)); // Assuming data.total contains the total number of products
       } catch (error) {
         console.error("Failed to fetch products:", error);
       } finally {
@@ -24,8 +28,8 @@ const Product = () => {
       }
     };
 
-    fetchProducts();
-  }, []);
+    fetchProducts(currentPage);
+  }, [currentPage]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -48,6 +52,18 @@ const Product = () => {
         [item.unique_id]: "",
       }));
     }, 3000);
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
   return (
@@ -104,6 +120,22 @@ const Product = () => {
               )}
             </div>
           ))}
+        </div>
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className="px-4 py-2 mx-1 bg-gray-300 rounded-md disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 mx-1 bg-gray-300 rounded-md disabled:opacity-50"
+          >
+            Next
+          </button>
         </div>
       </div>
       <Contact />
