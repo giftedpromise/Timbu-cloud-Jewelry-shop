@@ -7,12 +7,12 @@ import Jewelry3 from "../assets/images/jewelry3.png";
 import JewelryFrame from "../assets/images/jewelryFrame.png";
 import FeaturedImg from "../assets/images/featuredimg.png";
 import twentyImg from "../assets/images/2024img.png";
-//import { getProducts } from "../data/data";
+import { data } from "../data/data";
 import Contact from "./Contact";
 
 const Home = () => {
   const navigate = useNavigate();
-  //const lastFourItems = getProducts.slice(-4);
+  const lastFourItems = data.slice(-4);
 
   const handleShopNowClick = () => {
     navigate("/product");
@@ -93,7 +93,7 @@ const Home = () => {
           />
         </div>
 
-        {/* Additional images section 
+        {/* Additional images section   */}
         <div className="md:w-1/2 mt-10 md:mt-0 px-4 md:px-0">
           /{" "}
           <div className="grid grid-cols-2 gap-4">
@@ -114,7 +114,6 @@ const Home = () => {
             ))}
           </div>
         </div>
-        */}
       </div>
 
       <div className="flex flex-col justify-center items-center -mt-12 md:mt-14 h-screen">

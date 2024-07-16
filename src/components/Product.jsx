@@ -1,69 +1,27 @@
-import React, { useState, useEffect, useContext } from "react";
-import { getProducts } from "../data/data";
+import React, { useContext, useState } from "react";
 import Jewelry1 from "../assets/images/jewelry1.png";
 import Jewelryframe from "../assets/images/jewelryFrame.png";
-import CartIcon from "../assets/images/products/cart.png";
+import CartIcon from "../assets/images/products/cart.png"; // Assuming this is your cart icon image
+import { data } from "../data/data";
 import Contact from "./Contact";
 import { CartContext } from "../context/CartContext";
 
 const Product = () => {
   const { addToCart } = useContext(CartContext);
-  const [products, setProducts] = useState([]);
   const [notifications, setNotifications] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-
-  useEffect(() => {
-    const fetchProducts = async (page) => {
-      setLoading(true);
-      try {
-        const data = await getProducts(page);
-        setProducts(data.items);
-        setTotalPages(Math.ceil(data.total / 10)); // Assuming data.total contains the total number of products
-      } catch (error) {
-        console.error("Failed to fetch products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts(currentPage);
-  }, [currentPage]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (products.length === 0) {
-    return <div>No products found.</div>;
-  }
-  console.log(products);
 
   const handleAddToCart = (item) => {
     addToCart(item);
     setNotifications((prev) => ({
       ...prev,
-      [item.unique_id]: `${item.name} added to cart!`,
+      [item.id]: `${item.name} added to cart!`,
     }));
     setTimeout(() => {
       setNotifications((prev) => ({
         ...prev,
-        [item.unique_id]: "",
+        [item.id]: "",
       }));
-    }, 3000);
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    }, 3000); // Hide notification after 3 seconds
   };
 
   return (
@@ -84,13 +42,13 @@ const Product = () => {
       <div className="container mx-auto py-12 px-8">
         <h1 className="text-4xl font-bold text-center mb-8">Our Products</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {products.map((item) => (
+          {data.map((item) => (
             <div
-              key={item.unique_id}
+              key={item.id}
               className="shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105 relative"
             >
               <img
-                src={`https://api.timbu.cloud/images/${item.photos[0]?.url}`}
+                src={item.image}
                 alt={item.name}
                 className="w-full h-64 object-cover"
               />
@@ -99,43 +57,27 @@ const Product = () => {
                   <h2 className="text-lg font-bold font-playfair">
                     {item.name}
                   </h2>
+                  {/* Use onClick to call handleAddToCart */}
                   <img
                     src={CartIcon}
                     alt="cart"
                     className="w-6 h-6 cursor-pointer"
-                    onClick={() => handleAddToCart(item)}
+                    onClick={() => handleAddToCart(item)} // Call handleAddToCart with item
                   />
                 </div>
-
                 <div className="flex justify-between items-center">
                   <p className="text-lg font-bold text-gray-700 font-playfair">
-                    ${item.current_price[0].USD[0]}
+                    ${item.price.toFixed(2)}
                   </p>
                 </div>
               </div>
-              {notifications[item.unique_id] && (
+              {notifications[item.id] && (
                 <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-[#3F001F] text-white text-center py-1 px-2 w-3/4 rounded-md">
-                  {notifications[item.unique_id]}
+                  {notifications[item.id]}
                 </div>
               )}
             </div>
           ))}
-        </div>
-        <div className="flex justify-center mt-8">
-          <button
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-            className="px-4 py-2 mx-1 bg-gray-300 rounded-md disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className="px-4 py-2 mx-1 bg-gray-300 rounded-md disabled:opacity-50"
-          >
-            Next
-          </button>
         </div>
       </div>
       <Contact />

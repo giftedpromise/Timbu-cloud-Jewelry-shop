@@ -11,7 +11,7 @@ const Cart = () => {
   const handleQuantityChange = (item, increment) => {
     const newQuantity = item.quantity + increment;
     if (newQuantity > 0) {
-      updateQuantity(item.unique_id, newQuantity);
+      updateQuantity(item.id, newQuantity);
     }
   };
 
@@ -26,12 +26,12 @@ const Cart = () => {
         <div className="space-y-8">
           {cart.map((item) => (
             <div
-              key={item.unique_id}
+              key={item.id}
               className="flex flex-col md:flex-row justify-between items-center shadow-lg rounded-lg overflow-hidden p-6 bg-[#FAF3E6]"
             >
               <div className="w-full md:w-1/3 flex items-center mb-4 md:mb-0">
                 <img
-                  src={`https://api.timbu.cloud/images/${item.photos[0]?.url}`}
+                  src={item.image}
                   alt={item.name}
                   className="w-24 h-24 object-cover rounded mr-4"
                 />
@@ -40,7 +40,7 @@ const Cart = () => {
                     {item.name}
                   </h2>
                   <button
-                    onClick={() => removeFromCart(item.unique_id)}
+                    onClick={() => removeFromCart(item.id)}
                     className="text-red-500"
                   >
                     Remove
@@ -64,8 +64,7 @@ const Cart = () => {
               </div>
               <div className="w-full md:w-1/3 text-right">
                 <p className="text-lg font-bold text-customColor-500">
-                  Total: $
-                  {(item.current_price[0].USD[0] * item.quantity).toFixed(2)}
+                  Total: ${(item.price * item.quantity).toFixed(2)}
                 </p>
               </div>
             </div>
